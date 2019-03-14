@@ -13,7 +13,8 @@ window.onload = function(){
 
 	var fname = document.getElementById("sub_name")
 	var phoneno = document.getElementById("phone_no")
-	addsubscriber.addEventListener("click",function(){			//Event listener for add subscriber
+	addsubscriber.addEventListener("click",function(){
+		document.getElementById("loginform").reset();			//Event listener for add subscriber
 		loginform.style.display = "block";
 		title_page.style.display = "none";
 		headingTable.style.display = "none";
@@ -40,7 +41,7 @@ window.onload = function(){
 			var my_object = new jsonStructure(fname.value,phoneno.value);
 			array_of_records = JSON.parse(localStorage['records']) || [];
 			array_of_records.push(my_object);
-			localStorage['records'] = JSON.stringify(array_of_records);
+			localStorage['records'] = JSON.stringify(array_of_records);	
 		}
 		else{
 			title_page.style.display = "none";
@@ -78,4 +79,17 @@ window.onload = function(){
 			ShowRecords();
 		}
 	}
+	document.getElementById("sub_name").addEventListener("keypress",nameDisplay);
+	document.getElementById("phone_no").addEventListener("keypress",phoneDisplay);
+	function nameDisplay(){
+		var x = document.getElementById("sub_name").value;
+		document.getElementById("mimic_name").style.display = "block";
+		document.getElementById("mimic_name").innerHTML = x;
+	}
+	function phoneDisplay(){
+		var x = document.getElementById("phone_no").value;
+		document.getElementById("mimic_phone").style.display = "block";
+		document.getElementById("mimic_phone").innerHTML = x;	
+	}
 }
+
